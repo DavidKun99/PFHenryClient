@@ -4,23 +4,23 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Product",
     {
-      id: {
+      sku: {
         type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true,
       },
-      brand: {
+      number_part: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      name: {
+      titulo: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      model: {
+      id_fabricator: {
         type: DataTypes.STRING,
       },
-      feature: {
+      id_category: {
         type: DataTypes.STRING,
       },
       detail: {
@@ -32,7 +32,7 @@ module.exports = (sequelize) => {
       image: {
         type: DataTypes.ARRAY(DataTypes.STRING),
       },
-      stock: {
+      disponibility: {
         type: DataTypes.STRING,
         allowNull: false,
         defaultValue: 5,
@@ -41,7 +41,16 @@ module.exports = (sequelize) => {
           max: 10000,
         },
       },
-      state: {
+        category_name: {
+          type: DataTypes.STRING,
+      },
+        fabricator_name: {
+        type: DataTypes.STRING,
+      },
+         father_category: {
+        type: DataTypes.STRING,
+      },
+      optimized: {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true,
