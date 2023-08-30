@@ -2,11 +2,10 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "product",
+    "Product",
     {
       id: {
         type: DataTypes.UUID,
-        id_product,
         allowNull: false,
         primaryKey: true,
       },
@@ -55,7 +54,6 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: false,
-      freezeTableName: true,
     }
   );
 };
