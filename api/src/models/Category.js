@@ -2,11 +2,10 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "category",
+    "Category",
     {
       id_category: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
@@ -14,8 +13,8 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      type: {
-        type: DataTypes.INTEGER,
+      father_category: {
+        type: DataTypes.STRING,
         allowNull: true,
       },
     },

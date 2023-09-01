@@ -2,22 +2,18 @@ const { DataTypes } = require("sequelize");
 
 module.exports = (sequelize) => {
   sequelize.define(
-    "fabricator",
+    "Brand",
     {
-      id_fabricator: {
+      id_brand: {
         type: DataTypes.INTEGER,
-        autoIncrement: true,
         allowNull: false,
         primaryKey: true,
       },
-      fabricator_name: {
+      brand_name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      type: {
-        type: DataTypes.INTEGER,
-        allowNull: true,
-      },
+      
     },
     {
       timestamps: false,

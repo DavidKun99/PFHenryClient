@@ -5,7 +5,7 @@ module.exports = (sequelize) => {
     "Product",
     {
       sku: {
-        type: DataTypes.UUID,
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
@@ -17,23 +17,33 @@ module.exports = (sequelize) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      id_fabricator: {
-        type: DataTypes.STRING,
+      id_brand: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model:'Brand',
+          key:'id_brand',
+        }
       },
       id_category: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model:'Category',
+          key:'id_category',
+        }
       },
       detail: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSONB,
       },
       price: {
-        type: DataTypes.DECIMAL(8, 2),
+        type: DataTypes.DECIMAL,
       },
       image: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+        type: DataTypes.STRING,
       },
       disponibility: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 5,
         validate: {
@@ -41,24 +51,11 @@ module.exports = (sequelize) => {
           max: 10000,
         },
       },
-        category_name: {
-          type: DataTypes.STRING,
-      },
-        fabricator_name: {
-        type: DataTypes.STRING,
-      },
-         father_category: {
-        type: DataTypes.STRING,
-      },
-      optimized: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-      },
+      
       createdInDb: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
+    
+        defaultValue: false,
       },
     },
     {
