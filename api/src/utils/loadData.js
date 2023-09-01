@@ -3,8 +3,6 @@ const { Product, Brand, Category} = require("../db");
 const listProducts = require("../data/productsDb");
 
 
-//!-------------
-
 const brands= Array.from(new Set(listProducts.map(product => product.id_brand)));
 const categories= Array.from(new Set(listProducts.map(product => product.id_category)));
 const loadProductsInDB = async (req, res, next) => {
