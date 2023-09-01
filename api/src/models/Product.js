@@ -4,36 +4,46 @@ module.exports = (sequelize) => {
   sequelize.define(
     "Product",
     {
-      id: {
-        type: DataTypes.UUID,
+      sku: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
       },
-      brand: {
+      number_part: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      name: {
+      titulo: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      model: {
-        type: DataTypes.STRING,
+      id_brand: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model:'Brand',
+          key:'id_brand',
+        }
       },
-      feature: {
-        type: DataTypes.STRING,
+      id_category: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model:'Category',
+          key:'id_category',
+        }
       },
       detail: {
-        type: DataTypes.TEXT,
+        type: DataTypes.JSONB,
       },
       price: {
-        type: DataTypes.DECIMAL(8, 2),
+        type: DataTypes.DECIMAL,
       },
       image: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
-      },
-      stock: {
         type: DataTypes.STRING,
+      },
+      disponibility: {
+        type: DataTypes.INTEGER,
         allowNull: false,
         defaultValue: 5,
         validate: {
@@ -41,15 +51,11 @@ module.exports = (sequelize) => {
           max: 10000,
         },
       },
-      state: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
-      },
+      
       createdInDb: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: true,
+    
+        defaultValue: false,
       },
     },
     {
