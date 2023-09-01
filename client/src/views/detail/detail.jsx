@@ -1,38 +1,35 @@
-import 'tailwindcss/tailwind.css';
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
+import { connect, useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { getProductDetailActions } from '../../redux/actions/index'; // Asegúrate de importar la acción correctamente
 
+const Detail = () => {
 
-const Detail = ({ sku }) => {
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    // Realizar una solicitud GET al servidor para obtener los detalles del producto basado en el SKU
-    axios.get(`/productos/${sku}`)
-      .then((response) => {
-        setProduct(response.data);
-      })
-      .catch((error) => {
-        console.error('Error al obtener los detalles del producto:', error);
-      });
-  }, [sku]);
-
-  // Renderizar los detalles del producto
-  return (
-    <div>
-      {product ? (
-        <div>
-          <h2>{product.titulo}</h2>
-          <p>Precio: ${product.price}</p>
-          <p>Disponibilidad: {product.disponibility} unidades</p>
-          <p>Descripción: {product.detail.pantalla}, {product.detail.procesador}, {product.detail.almacenamiento}, {product.detail.ram}</p>
-          <img src={product.image} alt={product.titulo} />
-        </div>
-      ) : (
-        <p>Cargando detalles del producto...</p>
-      )}
+  const productDetails = useSelector((state) => state.productDetails);
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+      dispatch(getProductDetailActions());
+    }, [dispatch]);
+    
+    return (
+      <div>
+      <Link to="/home">Volver a Inicio</Link>
+      <ul>
+        {productDetails.map((product, index) => (
+          <li key={index}>
+            <p>Título: {product.titulo}</p>
+            <p>Precio: {product.price}</p>
+            <img src={product.image} alt={product.titulo} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
 
-export default Detail;
+const mapStateToProps = (state) => ({
+  productDetails: state.products.productDetails,
+});
+
+export default connect(mapStateToProps, { getProductDetailActions })(Detail);
