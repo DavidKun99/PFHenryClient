@@ -10,11 +10,10 @@ const ratingRouter = require("./ratingRouter");
 
 
 //DEFINICION DE USO DE LAS RUTAS
-mainRouter.use("/productos", productsRouter);
+mainRouter.use("/products", productsRouter);
 mainRouter.use("/user", userRouter);
 mainRouter.use("/order", orderRouter);
 mainRouter.use("/cart", cartRouter);
 mainRouter.use("/rating", ratingRouter);
-
 
 module.exports = mainRouter;
