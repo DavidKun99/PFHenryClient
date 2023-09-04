@@ -5,17 +5,14 @@ const {
   onlyLettersOrNumbersCheck,
 } = require("../helpers/validation");
 
-const getAllOrders = async (req, res) => {
+const getAllOrders = async () => {
   try {
     const orders = await Order.findAll({
       include: [{ model: Detailorder }, { model: User }],
     });
-
-    !orders
-      ? res.status(400).json("There are no Orders")
-      : res.status(200).json(orders);
+    return orders;
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    throw new Error('Product not found');
   }
 };
 
