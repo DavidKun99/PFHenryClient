@@ -233,7 +233,7 @@ const RegistrationForm = ({ user }) => {
               <Form.Group>
                 <Form.Label>Contraseña:</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   name="user_password"
                   value={user_password}
                   onChange={handleChange}
