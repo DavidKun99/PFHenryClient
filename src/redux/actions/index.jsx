@@ -35,7 +35,7 @@ export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const UPDATE_FAVORITES = "UPDATE_FAVORITES";
 export const UPDATE_CART = "UPDATE_CART";
 
-export const baseURL = "https://pfhenryapi-production.up.railway.app/"
+export const baseURL = "https://pfhenryapi-production.up.railway.app"
 
 export const updateProduct = (productId, updatedFields) => {
   return async (dispatch) => {
