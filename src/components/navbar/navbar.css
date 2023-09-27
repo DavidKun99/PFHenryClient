@@ -1,0 +1,26 @@
+.custom-navbar {
+    padding: 0;
+    height: 100px;
+  }
+
+  .custom-logo {
+    max-width: 170px;
+    max-height: 170px;
+  }
+
+  .cartCount {
+    position: relative;
+    top: -50px;
+    right: -25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 50%;
+    z-index: 1;
+  }

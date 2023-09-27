@@ -1,0 +1,28 @@
+.wishlist-container {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .wishlist-card {
+    width: 90%;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .wishlist-card:hover {
+    transform: scale(1.05);
+    z-index: 1; 
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+  }
+  
+  .wishlist-img {
+    max-width: 100px;
+  }  
+  .wishlist-card .card-img-top {
+    max-height: 150px;
+    object-fit: contain;
+  }
+  
+  .wishlist-card .card-text {
+    font-weight: bold;
+    text-align: right;
+  }
