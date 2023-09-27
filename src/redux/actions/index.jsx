@@ -337,6 +337,7 @@ export const loginGoogle = (formData) => {
     localStorage.setItem("token", token)
     localStorage.setItem("id", user.id);
     dispatch({ type: LOGIN, payload:{user: user} });
+    window.location.reload()
   }
 };
 
