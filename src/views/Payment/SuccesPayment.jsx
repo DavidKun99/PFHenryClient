@@ -29,7 +29,6 @@ const SuccessPurchase = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-    dispatch(deleteCart());
       if (
         collection_id &&
         payment_id &&
@@ -57,6 +56,7 @@ const SuccessPurchase = () => {
             // Procesa la respuesta si es necesario
             const data = await response.json();
             console.log("Datos de la respuesta:", data);
+dispatch(deleteCart());
           } else {
             console.error("Error al enviar la solicitud POST");
           }
