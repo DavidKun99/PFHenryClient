@@ -49,6 +49,16 @@ const RegistrationForm = ({ user }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+        if (name === "first_name" || name === "last_name") {
+      if (!/^[A-Za-z\s]+$/.test(value)) {
+        setFormErrors({
+          ...formErrors,
+          [name]: "Solo se permiten letras y espacios.",
+        });
+      } else {
+        setFormErrors({ ...formErrors, [name]: "" });
+      }
+    } 
     // Validación para el nombre de usuario (no debe contener espacios)
     if (name === "user_name") {
       if (/\s/.test(value)) {
