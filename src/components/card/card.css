@@ -1,0 +1,48 @@
+.custom-card {
+  width: 19rem;
+  height: 26rem;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.custom-card .imgContainer{
+  display: flex;
+  justify-content: center;
+  width: 90%;
+  height: 200px;
+  max-height: calc(100% - 2rem);
+  object-fit: contain;
+  margin-bottom: 0;
+}
+
+.custom-card .imgContainer img {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+}
+
+.custom-card .mt-3 {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.custom-card .titleCard {
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 0px; 
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 0;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}

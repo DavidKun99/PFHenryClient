@@ -1,0 +1,32 @@
+  .cart {
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .cart-card {
+    width: 90%;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .cart-card:hover {
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .cart-img {
+    margin-top: 25px;
+    margin-left: 10px;
+    margin-bottom: 25px;
+    max-width: 1000px;
+  }
+  
+  .cart-card .card-img-top {
+    max-height: 150px;
+    object-fit: contain;
+  }
+  
+  .cart-card .card-text {
+    font-weight: bold;
+    text-align: left;
+  }
+  
