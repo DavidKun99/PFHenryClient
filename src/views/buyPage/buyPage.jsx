@@ -45,9 +45,8 @@ const BuyPage = () => {
     });
     console.log(response );
   localStorage.setItem('orderId', response.data.order.id)
-  dispatch(deleteCart());
     window.location.href = response.data.init_point;
-    
+    dispatch(deleteCart());
   };
   
 
