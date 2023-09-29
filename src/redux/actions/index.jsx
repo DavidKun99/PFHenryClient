@@ -36,7 +36,7 @@ export const UPDATE_FAVORITES = "UPDATE_FAVORITES";
 export const UPDATE_CART = "UPDATE_CART";
 export const DELETE_CART = "DELETE_CART";
 
-export const baseURL = "http://localhost:3001"
+export const baseURL ="https://pfhenryapi-production.up.railway.app"
 
 export const updateProduct = (productId, updatedFields) => {
   return async (dispatch) => {
