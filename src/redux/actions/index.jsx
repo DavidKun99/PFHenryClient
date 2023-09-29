@@ -1,7 +1,5 @@
 import axios from "axios";
 import Swal from "sweetalert2";
-
-import firebase from '../../initializers/firebase'
 export const UPDATE_SEARCH_RESULTS = "UPDATE_SEARCH_RESULTS";
 export const ERROR = "ERROR";
 export const GET_PODUCT_SUCCESS = "GET_PODUCT_SUCCESS";
@@ -355,7 +353,6 @@ export const logout = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("cart");
     dispatch({ type: LOGOUT });
-    firebase.auth().signOut()
     Swal.fire({
       icon: "success",
       title: "Logged Out Successfully",
