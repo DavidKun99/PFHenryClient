@@ -3,10 +3,12 @@ import { Button } from "react-bootstrap";
 import { useLocation, useNavigate } from "react-router-dom";
 import { baseURL, deleteCart } from "../../redux/actions";
 import "../../components/css/index.css";
+import { useDispatch } from 'react-redux'
 
 const SuccessPurchase = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
   const searchParams = new URLSearchParams(location.search);
   const collection_id = searchParams.get("collection_id")
     ? searchParams.get("collection_id")
@@ -27,6 +29,7 @@ const SuccessPurchase = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+    dispatch(deleteCart());
       if (
         collection_id &&
         payment_id &&
