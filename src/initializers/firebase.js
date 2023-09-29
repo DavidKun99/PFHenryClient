@@ -12,7 +12,5 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 
-// Configura la persistencia de sesión como "NONE"
-firebaseApp.auth().setPersistence(firebaseApp.auth.Auth.Persistence.NONE);
 
 export default firebaseApp;
