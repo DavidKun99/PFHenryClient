@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { createUser } from '../../redux/actions/index';
@@ -50,15 +49,27 @@ const RegistrationForm = ({ user }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Validación para el nombre y apellido (solo letras y espacios)
-    if (name === "first_name" || name === "last_name") {
-      if (!/^[A-Za-z\s]+$/.test(value)) {
+    // Validación para el nombre de usuario (no debe contener espacios)
+    if (name === "user_name") {
+      if (/\s/.test(value)) {
         setFormErrors({
           ...formErrors,
-          [name]: "Solo se permiten letras y espacios.",
+          [name]: "El nombre de usuario no debe contener espacios.",
         });
       } else {
         setFormErrors({ ...formErrors, [name]: "" });
+      }
+    }
+
+    // Validación para el correo electrónico
+    if (name === "email") {
+      if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
+        setFormErrors({
+          ...formErrors,
+          email: "Formato de email incorrecto.",
+        });
+      } else {
+        setFormErrors({ ...formErrors, email: "" });
       }
     }
 
@@ -129,6 +140,9 @@ const RegistrationForm = ({ user }) => {
                   onChange={handleChange}
                   required
                 />
+                {formErrors.user_name && (
+                  <Form.Text className="text-danger">{formErrors.user_name}</Form.Text>
+                )}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Nombre:</Form.Label>
