@@ -7,10 +7,10 @@ import { Button, Card, Form } from 'react-bootstrap';
 import '../css/index.css';
 import Swal from 'sweetalert2';
 
-
 const RegistrationForm = ({ user }) => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     user_name: "",
     first_name: "",
@@ -25,12 +25,12 @@ const RegistrationForm = ({ user }) => {
     user_password: "",
   });
 
-  // Estados para los errores y mensajes de error
   const [formErrors, setFormErrors] = useState({
     user_name: "",
     first_name: "",
     last_name: "",
     email: "",
+    mobile: "",
   });
 
   const {
@@ -48,43 +48,34 @@ const RegistrationForm = ({ user }) => {
   } = formData;
 
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
 
-    // Validar campos en tiempo real
-    validateField(e.target.name, e.target.value);
-  };
-
-  const validateField = (fieldName, value) => {
-    switch (fieldName) {
-      case "first_name":
-      case "last_name":
-        // Validar solo letras
-        if (!/^[A-Za-z]+$/.test(value)) {
-          setFormErrors({
-            ...formErrors,
-            [fieldName]: "Solo se permiten letras.",
-          });
-        } else {
-          setFormErrors({ ...formErrors, [fieldName]: "" });
-        }
-        break;
-
-      case "email":
-        // Validar formato de email
-        if (!/^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/.test(value)) {
-          setFormErrors({
-            ...formErrors,
-            email: "Formato de email incorrecto.",
-          });
-        } else {
-          setFormErrors({ ...formErrors, email: "" });
-        }
-        break;
-
-      default:
-        setFormErrors({ ...formErrors, [fieldName]: "" });
-        break;
+    // Validación para el nombre y apellido (solo letras y espacios)
+    if (name === "first_name" || name === "last_name") {
+      if (!/^[A-Za-z\s]+$/.test(value)) {
+        setFormErrors({
+          ...formErrors,
+          [name]: "Solo se permiten letras y espacios.",
+        });
+      } else {
+        setFormErrors({ ...formErrors, [name]: "" });
+      }
     }
+
+    // Validación para el número de teléfono (solo números)
+    if (name === "mobile") {
+      if (!/^[0-9]+$/.test(value)) {
+        setFormErrors({
+          ...formErrors,
+          [name]: "Solo se permiten números.",
+        });
+      } else {
+        setFormErrors({ ...formErrors, [name]: "" });
+      }
+    }
+
+    // Resto del código para actualizar el estado con los cambios
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -116,7 +107,6 @@ const RegistrationForm = ({ user }) => {
   const formIsValid = !Object.values(formErrors).some((error) => error);
 
   return (
-
     <div className="d-flex justify-content-center align-items-center" style={{ minHeight: 'calc(100vh - 100px)', marginTop: '130px', marginBottom: '50px' }}>
       {user ? (
         <div>
@@ -179,9 +169,6 @@ const RegistrationForm = ({ user }) => {
                   <option value="M">M</option>
                   <option value="F">F</option>
                 </Form.Control>
-                {formErrors.gender && (
-                  <Form.Text className="text-danger">{formErrors.gender}</Form.Text>
-                )}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Email:</Form.Label>
@@ -235,6 +222,9 @@ const RegistrationForm = ({ user }) => {
                   onChange={handleChange}
                   required
                 />
+                {formErrors.mobile && (
+                  <Form.Text className="text-danger">{formErrors.mobile}</Form.Text>
+                )}
               </Form.Group>
               <Form.Group>
                 <Form.Label>Rol:</Form.Label>
@@ -248,7 +238,7 @@ const RegistrationForm = ({ user }) => {
               <Form.Group>
                 <Form.Label>Contraseña:</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="password"
                   name="user_password"
                   value={user_password}
                   onChange={handleChange}
@@ -275,7 +265,7 @@ const RegistrationForm = ({ user }) => {
 };
 
 const mapStateToProps = (state) => ({
-  user: state.user, // Asegúrate de que estás obteniendo User del estado de Redux
+  user: state.user,
 });
 
 export default connect(mapStateToProps, { createUser })(RegistrationForm);
