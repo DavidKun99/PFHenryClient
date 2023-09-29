@@ -353,6 +353,7 @@ export const logout = () => {
     localStorage.removeItem("id");
     localStorage.removeItem("cart");
     dispatch({ type: LOGOUT });
+    firebase.auth().signOut()
     Swal.fire({
       icon: "success",
       title: "Logged Out Successfully",
