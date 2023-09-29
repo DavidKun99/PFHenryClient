@@ -31,7 +31,6 @@ const LoginForm = ({ login, user, error }) => {
         const userId = localStorage.getItem('id')
         dispatch(getFavorites(userId));
         dispatch(getCart(userId));
-        window.location.reload();
 
       }).catch((error) => {
         console.log(error)
